@@ -15,11 +15,13 @@ gulp.task('default', function() {
 	gulp.watch('src/sass/**/*.scss', ['styles']);
 });
 
+// Copy HTML files to dist folder
 gulp.task('copyHTML', function() {
 	return gulp.src('src/*.html')
 		.pipe(gulp.dest('./dist'));
 });
 
+// Copy, add source map, compress, and autoprefix SASS files to dist/css folder
 gulp.task('styles', function() {
 	return gulp.src('src/sass/**/*.scss')
 		.pipe(sourcemaps.init())
@@ -30,4 +32,10 @@ gulp.task('styles', function() {
 		}))
 		.pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'));
+});
+
+// Copy all js files into the dist/js folder
+gulp.task('copyJS', function() {
+	return gulp.src('src/js/**/*.js')
+		.pipe(gulp.dest('dist/js'));
 });
