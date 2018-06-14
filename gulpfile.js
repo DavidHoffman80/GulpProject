@@ -6,14 +6,22 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 // gulp-sourcemaps maps sass to css compilation
 const sourcemaps = require('gulp-sourcemaps');
+// gulp-autoprefixer automatically adds browser prefixes
+const prefixer = require('gulp-autoprefixer');
 
-// Default gulp runs
+// Default gulp task
 gulp.task('default', function() {
-	gulp.watch('src/sass/**/*.scss')
+	gulp.watch('src/sass/**/*.scss', ['styles']);
 });
 
 gulp.task('styles', function() {
-  gulp.src('src/sass/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
+	return gulp.src('src/sass/**/*.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions'],
+			cascade: false
+		}))
+		.pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'));
 });
