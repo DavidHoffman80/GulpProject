@@ -11,8 +11,10 @@ const autoprefixer = require('gulp-autoprefixer');
 
 // Default gulp task
 gulp.task('default', function() {
-	gulp.watch('*.html', ['copyHTML']);
+	gulp.watch('src/*.html', ['copyHTML']);
 	gulp.watch('src/sass/**/*.scss', ['styles']);
+	gulp.watch('src/js/**/*.js', ['copyJS']);
+	gulp.watch('src/img/*', ['copyIMG']);
 });
 
 // Copy HTML files to dist folder
@@ -38,4 +40,10 @@ gulp.task('styles', function() {
 gulp.task('copyJS', function() {
 	return gulp.src('src/js/**/*.js')
 		.pipe(gulp.dest('dist/js'));
+});
+
+// Copy all images into the dist/img folder
+gulp.task('copyIMG', function() {
+	return gulp.src('src/img/*')
+		.pipe(gulp.dest('dist/img'));
 });
