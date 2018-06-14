@@ -7,11 +7,17 @@ const sass = require('gulp-sass');
 // gulp-sourcemaps maps sass to css compilation
 const sourcemaps = require('gulp-sourcemaps');
 // gulp-autoprefixer automatically adds browser prefixes
-const prefixer = require('gulp-autoprefixer');
+const autoprefixer = require('gulp-autoprefixer');
 
 // Default gulp task
 gulp.task('default', function() {
+	gulp.watch('*.html', ['copyHTML']);
 	gulp.watch('src/sass/**/*.scss', ['styles']);
+});
+
+gulp.task('copyHTML', function() {
+	return gulp.src('src/*.html')
+		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('styles', function() {
