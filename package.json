@@ -1,0 +1,22 @@
+{
+  "name": "gulpproject",
+  "version": "1.0.0",
+  "description": "Gulp personal project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidHoffman80/GulpProject.git"
+  },
+  "author": "Dave Hoffman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidHoffman80/GulpProject/issues"
+  },
+  "homepage": "https://github.com/DavidHoffman80/GulpProject#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
