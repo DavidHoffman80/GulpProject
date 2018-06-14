@@ -10,12 +10,12 @@ const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 
 // Default gulp task
-gulp.task('default', function() {
+gulp.task('default', ['copyHTML', 'styles', 'copyJS', 'copyIMG']
 	gulp.watch('src/*.html', ['copyHTML']);
 	gulp.watch('src/sass/**/*.scss', ['styles']);
 	gulp.watch('src/js/**/*.js', ['copyJS']);
 	gulp.watch('src/img/*', ['copyIMG']);
-});
+);
 
 // Copy HTML files to dist folder
 gulp.task('copyHTML', function() {
