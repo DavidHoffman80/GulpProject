@@ -8,6 +8,8 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 // gulp-autoprefixer automatically adds browser prefixes
 const autoprefixer = require('gulp-autoprefixer');
+// gulp-concat concatonates all js files into 1 file
+const concat = require('gulp-concat');
 
 // Default gulp task
 gulp.task('default', ['copyHTML', 'styles', 'copyJS', 'copyIMG'], function() {
@@ -27,8 +29,8 @@ gulp.task('copyHTML', function() {
 gulp.task('styles', function() {
 	return gulp.src('src/sass/**/*.scss')
 		.pipe(sourcemaps.init())
-		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-		.pipe(autoprefixer({
+			.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+			.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false
 		}))
@@ -39,6 +41,9 @@ gulp.task('styles', function() {
 // Copy all js files into the dist/js folder
 gulp.task('copyJS', function() {
 	return gulp.src('src/js/**/*.js')
+		.pipe(sourcemaps.init())
+			.pipe(concat('main.js'))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('dist/js'));
 });
 
